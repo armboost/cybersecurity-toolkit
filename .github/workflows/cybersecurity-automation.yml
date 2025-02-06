@@ -1,0 +1,32 @@
+name: Cybersecurity Automation Workflow
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 3 * * *'  # Runs daily at 3 AM UTC
+
+jobs:
+  security-automation:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Install Dependencies
+        run: |
+          sudo apt update
+          sudo apt install yara jq -y
+          pip install requests splunk-sdk
+
+      - name: Run YARA Scan
+        run: python scripts/yara_scan.py
+      
+      - name: Fetch OSINT Data
+        run: python scripts/osint_lookup.py
+      
+      - name: Analyze Logs with Splunk
+        run: python scripts/splunk_log_analysis.py
+
