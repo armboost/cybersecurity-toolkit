@@ -1,3 +1,5 @@
+# This checks a website if it is online.
+
 #!/bin/bash
 
 # Ask the user for a website to check
