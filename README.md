@@ -1,16 +1,17 @@
 # cybersecurity-toolkit
 
-A comprehensive automation toolkit for cybersecurity operations, featuring YARA scanning, OSINT data collection, and Splunk log analysis.
+A comprehensive automation toolkit for cybersecurity operations, featuring YARA scanning, OSINT data collection, port scanning, and website monitoring.
 
 ## Overview
 
-This toolkit automates key security operations through scheduled workflows and push-triggered automation. It integrates multiple security tools and platforms to streamline threat detection, intelligence gathering, and log analysis.
+This toolkit automates key security operations through scheduled workflows and push-triggered automation. It integrates multiple security tools and platforms to streamline threat detection, intelligence gathering, and network monitoring.
 
 ## Features
 
 - **YARA Scanning**: Automated malware pattern detection and analysis
 - **OSINT Lookup**: Intelligence gathering from open sources
-- **Splunk Integration**: Centralized log analysis and correlation
+- **Port Scanning**: Network port enumeration and service detection
+- **Website Monitoring**: Uptime and availability checking
 - **Automated Workflows**: Scheduled and push-triggered security operations
 
 ## Requirements
@@ -20,6 +21,7 @@ This toolkit automates key security operations through scheduled workflows and p
 - Ubuntu/Linux environment
 - YARA
 - jq (JSON processor)
+- Python 3.x
 
 ### Python Packages
 
@@ -55,15 +57,27 @@ The repository includes GitHub Actions workflows that run:
 
 Run individual security modules:
 
+#### Python Scripts
+
 ```bash
 # YARA Scan
-python scripts/yara_scan.py
+python scripts/python/yara_scan.py
 
 # OSINT Lookup
-python scripts/osint_lookup.py
+python scripts/python/osint_lookup.py
 
-# Splunk Log Analysis
-python scripts/splunk_log_analysis.py
+# Port Scanner
+python scripts/python/port-scanner.py
+```
+
+#### Bash Scripts
+
+```bash
+# Check Website Availability
+bash scripts/bash/check_website.sh
+
+# Port Scanner
+bash scripts/bash/port_scanner.sh
 ```
 
 ## Project Structure
@@ -72,13 +86,15 @@ python scripts/splunk_log_analysis.py
 cybersecurity-toolkit/
 ├── .github/
 │   └── workflows/
-│       └── scripts/
-│           └── python/
-│               └── cybersecurity-automation.yml
+│       └── cybersecurity-automation.yml
 ├── scripts/
-│   ├── yara_scan.py
-│   ├── osint_lookup.py
-│   └── splunk_log_analysis.py
+│   ├── python/
+│   │   ├── yara_scan.py
+│   │   ├── osint_lookup.py
+│   │   └── port-scanner.py
+│   └── bash/
+│       ├── check_website.sh
+│       └── port_scanner.sh
 ├── README.md
 └── ...
 ```
@@ -89,9 +105,9 @@ cybersecurity-toolkit/
 
 Ensure the following are configured for proper operation:
 
-- **Splunk Credentials**: Configure SDK authentication for Splunk integration
 - **YARA Rules**: Ensure YARA rule definitions are in place
 - **API Keys**: Set up any required API keys for OSINT sources
+- **Target Hosts**: Configure target hosts for port scanning and website monitoring
 
 ## Workflow Details
 
@@ -104,7 +120,7 @@ Ensure the following are configured for proper operation:
   2. Install dependencies (YARA, jq, Python packages)
   3. Run YARA malware scanning
   4. Fetch OSINT data
-  5. Analyze logs with Splunk
+  5. Execute port scanning
 
 ## Contributing
 
