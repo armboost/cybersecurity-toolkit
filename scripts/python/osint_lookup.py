@@ -1,9 +1,14 @@
 #This is script will query VirusTotal for threat intelligence with a given IP address.
 
 import requests
+import os
 
-API_KEY = "your-virustotal-api-key"
-IP_ADDRESS = "8.8.8.8"  # Replace with a target IP
+API_KEY = os.environ.get("VT_API_KEY")
+if not API_KEY:
+    print("Error: VT_API_KEY not set. Run: export VT_API_KEY='your-key-here'")
+    exit(1)
+
+IP_ADDRESS = input("Enter IP Address to query: ").strip()
 
 url = f"https://www.virustotal.com/api/v3/ip_addresses/{IP_ADDRESS}"
 headers = {"x-apikey": API_KEY}
