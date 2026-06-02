@@ -2,13 +2,17 @@
 
 import requests
 import os
+import sys
 
 API_KEY = os.environ.get("VT_API_KEY")
 if not API_KEY:
     print("Error: VT_API_KEY not set. Run: export VT_API_KEY='your-key-here'")
     exit(1)
 
-IP_ADDRESS = input("Enter IP Address to query: ").strip()
+IP_ADDRESS = os.environ.get("IP_ADDRESS") or sys.argv[1] if len(sys.argv) > 1 else None
+if not IP_ADDRESS:
+    print("Error: IP_ADDRESS not provided")
+    exit(1)
 
 url = f"https://www.virustotal.com/api/v3/ip_addresses/{IP_ADDRESS}"
 headers = {"x-apikey": API_KEY}
