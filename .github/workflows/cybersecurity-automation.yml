@@ -30,6 +30,10 @@ jobs:
           IP_ADDRESS: ${{ secrets.IP_ADDRESS }} 
         run: python scripts/python/osint_lookup.py 
 
-      - name: Analyze Logs with Splunk
-        run: python scripts/python/splunk_log_analysis.py
+      - name: Analyze Logs with Wazuh
+        env:
+          WAZUH_API_URL: ${{ secrets.WAZUH_API_URL }}
+          WAZUH_USERNAME: ${{ secrets.WAZUH_USERNAME }}
+          WAZUH_PASSWORD: ${{ secrets.WAZUH_PASSWORD }}
+        run: python scripts/python/wazuh_log_analysis.py
 
