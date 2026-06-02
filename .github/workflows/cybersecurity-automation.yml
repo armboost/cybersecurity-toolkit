@@ -25,8 +25,10 @@ jobs:
         run: python scripts/python/yara_scan.py
       
       - name: Fetch OSINT Data
-        run: python scripts/python/osint_lookup.py
-      
+        env:
+          VT_API_KEY: ${{ secrets.VT_API_KEY }}
+        run: python scripts/python/osint_lookup.py 
+
       - name: Analyze Logs with Splunk
         run: python scripts/python/splunk_log_analysis.py
 
