@@ -27,6 +27,7 @@ jobs:
       - name: Fetch OSINT Data
         env:
           VT_API_KEY: ${{ secrets.VT_API_KEY }}
+          IP_ADDRESS: ${{ secrets.IP_ADDRESS }} 
         run: python scripts/python/osint_lookup.py 
 
       - name: Analyze Logs with Splunk
