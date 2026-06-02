@@ -19,7 +19,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install yara jq -y
-          pip install requests splunk-sdk
+          pip install requests splunk-sdk yara-python
 
       - name: Run YARA Scan
         run: python scripts/python/yara_scan.py
