@@ -9,7 +9,7 @@ if not API_KEY:
     print("Error: VT_API_KEY not set. Run: export VT_API_KEY='your-key-here'")
     exit(1)
 
-IP_ADDRESS = os.environ.get("IP_ADDRESS") or sys.argv[1] if len(sys.argv) > 1 else None
+IP_ADDRESS = os.environ.get("IP_ADDRESS")
 if not IP_ADDRESS:
     print("Error: IP_ADDRESS not provided")
     exit(1)
