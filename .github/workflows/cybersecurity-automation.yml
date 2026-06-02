@@ -22,11 +22,11 @@ jobs:
           pip install requests splunk-sdk
 
       - name: Run YARA Scan
-        run: python scripts/yara_scan.py
+        run: python scripts/python/yara_scan.py
       
       - name: Fetch OSINT Data
-        run: python scripts/osint_lookup.py
+        run: python scripts/python/osint_lookup.py
       
       - name: Analyze Logs with Splunk
-        run: python scripts/splunk_log_analysis.py
+        run: python scripts/python/splunk_log_analysis.py
 
